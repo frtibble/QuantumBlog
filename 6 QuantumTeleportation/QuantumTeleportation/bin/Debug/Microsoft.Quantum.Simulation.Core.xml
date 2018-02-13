@@ -1,0 +1,560 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Quantum.Simulation.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Quantum.Simulation.Core.AbstractOperation">
+            <summary>
+                Represent a Quantum Operation, a list of instructions to be executed
+                in a Quantum Machine.
+                Each Operation receives in its constructor an OperationFactory, with
+                the instance of the Factory that created the operation instance and
+                that can be used to get instances of other operations as needed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Extensions">
+            <summary>
+            Utility functions for extracting Type related to ICallalble, IAdjointable, IControllable
+            and IUnitary
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Extensions.GetQubits(System.Object)">
+            <summary>
+            Returns all the qubits contained in a given type. 
+            </summary>
+            <param name="value">The object from which qubits are extracted</param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Extensions.JoinArrays``1(System.Collections.Generic.List{Microsoft.Quantum.Simulation.Core.QArray{``0}})">
+            <summary>
+            Joins the arrays given by the argument into one array.
+            </summary>
+            <typeparam name="T">Type of the array elements.</typeparam>
+            <param name="arrays">List of the arrays to be joined.</param>
+            <returns>New array that contains all elements of the arrays
+            passed to the function.</returns>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Extensions.InterfaceType(System.Type,System.Type)">
+            <summary>
+            For a type t implementing generic  
+            interface given by genericInterfaceDefinition
+            return type corresponding to genericInterface with filled in 
+            generic parameters. Returns null if type does not implement generic interface
+            and causes Debug.Assert if type implements more than one of the generic interfaces. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Extensions.ICallableType(System.Type)">
+            <summary>
+            Returns type of ICallable interface implemented by a given type.
+            If given type does not implement ICallable return null
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Extensions.IUnitatryType(System.Type)">
+            <summary>
+            Returns type of IUnitary interface implemented by a given type.
+            If given type does not implement ICallable return null
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Extensions.IAdjointableType(System.Type)">
+            <summary>
+            Returns type of IUnitary interface implemented by a given type.
+            If given type does not implement ICallable return null
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Extensions.IControllableType(System.Type)">
+            <summary>
+            Returns type of IControllable interface implemented by a given type.
+            If given type does not implement ICallable return null
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.OperationFunctor">
+            <summary>
+            Variant or a functor of the operation appearing in the operation call graph
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.OperationFunctor.Body">
+            <summary>
+            Operation body, defined by Q# keyword <code>body</code>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.OperationFunctor.Adjoint">
+            <summary>
+            Adjoint variant of the operation, defined by Q# keyword <code>adjoint</code>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.OperationFunctor.Controlled">
+            <summary>
+            Controlled variant of the operation, defined by Q# keyword <code>controlled</code>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.OperationFunctor.ControlledAdjoint">
+            <summary>
+            Controlled Adjoint variant of the operation, defined by
+            Q# keyword <code>controlled adjoint</code>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.PartialApplication`3">
+            <summary>
+                This class saves the operation resulting from doing a Partial Application
+                on a closed type operation.
+                
+                This class is typically initialized passing a partialTuple from which
+                we create a Mapper that maps the partial arguments to the original type.
+                Optionally it can receive a Mapper to do the same.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.PartialApplication`3.ToString">
+            <remarks>
+            When member values of ValueTuple are null they are printed as ""; 
+            it is likely that null values appear due to the use of default(P)
+            note that this does not work when we are missing values of value type.
+            Result of this printing does give some ideas of what mapper partial application map is but not exactly 
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.IControllable`1">
+            <summary>
+            Represents an operation that has a Controlled operation
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Controllable`1">
+            <summary>
+                Base class for operations that have a ControlledOperation. Both the Body and ControlledBody methods
+                need to be implemented.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.ControlledOperation`2">
+            <summary>
+                This class is used to represents an operation that has been controlled.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.IAdjointable`1">
+            <summary>
+                Represents an operation that has an Adjoint.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Adjointable`1">
+            <summary>
+                Base class for Operations that have an Adjoint. Both the Body and AdjointBody methods
+                need to be implemented.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.AdjointedOperation`2">
+            <summary>
+                Class used to represents an operation that has been adjointed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.IAdjointable">
+            <summary>
+                Represents an operation that has an Adjoint and whose
+                input Type is not resolved until it gets Applied at runtime.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.GenericAdjoint">
+            <summary>
+                Represents the result of applying Adjoint to an operation
+                input Type is not resolved until it gets Applied at runtime.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.IControllable">
+            <summary>
+                Represents an operation that has a Controlled operation and whose
+                input Type is not resolved until it gets Applied at runtime.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.GenericControlled">
+            <summary>
+                Represents the result of applying Controlled to an operation
+                input Type is not resolved until it gets Applied at runtime.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.ICallable">
+            <summary>
+                Represents an operation that whose
+                input and output Types are not resolved until it gets Applied at runtime.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.GenericOperation">
+            <summary>
+                This is a wrapper class that holds an Operation's Type and will
+                try to create an instance of it when Apply is called.
+               
+                During apply, it uses the input and output parameters to resolve
+                any generic parameters of the BaseOp using reflection.
+                
+                Notice GenericOperations are not expected to extend this class. They
+                should instead extend Operation and stay generic. This class will take
+                care of resolving the Generic types are runtime based on the Apply types.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.GenericOperation.FindClosedType``2">
+            <summary>
+                Finds the ClosedType for the BaseOp based on the given Input (I) and
+                Output (O) Types that the Apply method is expecting.
+                
+             This method finds the ClosedType of the based (generic) operation...
+             For example, if the base operation is Some ['T] : Unitary [('T, long)]
+             and it is called with a.Apply((bool, long))
+             then it maps maps 'T == bool
+             and returns 
+             typeof(SomeOp [bool ])
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.GenericOperation.Resolve(System.Type,System.Type,System.Type[])">
+            <summary>
+            Populates the generic Type Arguments based on the resolved type.
+            Basically if the resolved type comes from a generic type, then what ever resolved values it 
+            had are applied to original.
+            This method is the one that computes what the Type the GenericParameter should take based on the input argument.
+            It recursively checks if the Operations is expecting a
+            ('T, long) and it receives a (bool, long) it maps 'T == bool.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.GenericPartial">
+            <summary>
+                Represents the result of doing a partial applicatin to an operation whose
+                input Type is not resolved until it gets Applied at runtime.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.GenericPartial.Combine(System.Type[],System.Collections.Generic.Stack{System.Type})">
+            <summary>
+            Combines the original partial values, with the args received as parameter to return 
+            a fully populated instance of targetType
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.PartialMapper">
+            <summary>
+            This class creates a function that maps the partial Type resulting from
+            a partial application to the original Type expected by the operation.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.PartialMapper.TupleTypes">
+            <summary>
+            To easily get the correct ValueTuple type based on the number of items it needs:
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.PartialMapper.CastTuple(System.Type,System.Object)">
+            <summary>
+            Because C# can't automatically cast from (IUnitary, long) to (ICallable, long), sigh...
+            we do the work for it here...
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.PartialMapper.IsValidValue(System.Type,System.Object)">
+            <summary>
+            Verifies that the object received as argument is congruent
+            with the Type that is expected to be applied to.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.PartialMapper.Combine(System.Object[],System.Collections.Generic.Stack{System.Object})">
+            <summary>
+            Combines the original partial values, with the args received as parameter to return 
+            a fully populated instance of targetType
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.PartialMapper.Create``2(System.Object)">
+            <summary>
+            Creates a Func that maps a tuple P as tuple I based on the values on partial.
+            Partial itself must be a tuple congruent with I, that is, partial must be a Tuple
+            with the same number and same Type of fields, except for some of them whose value is
+            Missing (AbstractOperation._)
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.IUnitary">
+            <summary>
+                Represents an operation that has both a Controlled and an Adjoint 
+                operation and whose input Type is not resolved until it gets 
+                Applied at runtime.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.IQubitsContainer">
+            <summary>
+            The interface indicating that give type contains Qubits.
+            Currently not all types that contain qubits implement this interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.IQubitsContainer.GetQubits">
+            <summary>
+            If there are no qubits contained in the value returns null 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Operation`2">
+            <summary>
+                The base class for all ClosedType quantum operations.
+            </summary>
+            <typeparam name="I">Type of input parameters.</typeparam>
+            <typeparam name="O">Type of return values.</typeparam>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Operation`2.FindPartialType(System.Type,System.Object)">
+            <summary>
+                Finds the expected Tuple type from the given partial values and given input type.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.QArray`1">
+            <summary>
+            Represents a collection of objects that can be individually accessed by index.
+            Corresponds to Q# array type.
+            </summary>
+            <typeparam name="T">The type of elements in the list. The type of the Q# array element.</typeparam>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.QArray`1.#ctor">
+            <summary>
+            Create an array of length 0.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.QArray`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Creates an array that contains elements from the collection argument.
+            </summary>
+            <param name="collection"> Elements with which the array is initialized.</param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.QArray`1.#ctor(System.Int64)">
+            <summary>
+            Creates an array of size given by capacity and default-initializes 
+            array elements. Uses C# keyword <code>default</code> to initialize array elements. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.Core.QArray`1.Item(System.Int64)">
+            <summary>
+            Returns an element of the array with given index. Corresponds to the
+            result of calling <code>arr[i]</code> in Q#.
+            Allows accessing the underlying item with a long index.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.Core.QArray`1.Length">
+            <summary>
+            The Length of the array. Corresponds to the result of calling <code>Length(arr)</code> in Q#
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.QArray`1.Slice(Microsoft.Quantum.Simulation.Core.Range)">
+            <summary>
+                Returns a sub-array from the given input array, based on the indexes
+                returned by the provided range instance.
+                For example, if the Range elements are [3,2,1], then this method
+                will return an array consisting of the elements 3,2,1 from the 
+                input array.
+                If the input array is null, this method returns null.
+                If the input range is null or empty, this method returns an empty array.
+                If the elements of the range are outside the array bounds, it throws
+                an IndexOutOfRangeException
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.QArray`1.ToString">
+            <summary>
+            Returns string that is a Q# representation of the value of the array.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.QArray`1.op_Addition(Microsoft.Quantum.Simulation.Core.QArray{`0},Microsoft.Quantum.Simulation.Core.QArray{`0})">
+            <summary>
+                Returns a new QArray with the result of concatenating the
+                two given parameters.
+                If both input arrays are null, it returns null.
+                If one of the input arrays is null, it returns the other.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Range">
+            <summary>
+            Corresponds to Q# Range type. For example, the Q# value of <code>[start .. step .. end]</code> 
+            is of the Range type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Range.#ctor(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Creates a range corresponding to Q# value [start .. step .. end]
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Range.#ctor(System.Int64,System.Int64)">
+            <summary>
+            Creates a range with step equal to 1, corresponding to 
+             Q# value of <code>[start .. end]</code> 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.Core.Range.Start">
+            <summary>
+            First element (inclusive)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.Core.Range.Step">
+            <summary>
+            Number to increment on each step. 
+            If negative, the absolute value of the number will
+            be subtracted on each step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.Core.Range.End">
+            <summary>
+            The last element (inclusive)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Range.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Implementation of <see cref="M:System.Collections.IEnumerable.GetEnumerator"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Range.GetEnumerator">
+            <summary>
+            Implementation of <see cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Range.ToString">
+            <summary>
+            Prints Q# representation of the value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.TypeExtensions.GetTupleFieldTypes(System.Type)">
+            <summary>
+            Returns a list of length one containing arg, if arg is not a tuple, and a list of the field types of arg, if arg is a tuple.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.TypeExtensions.Normalize(System.Type)">
+            <summary>
+            Makes sure that Generic types are all the same to avoid cast errors
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Qubit">
+            <summary>
+            Represents a Quantum Bit.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Qubit.#ctor(System.Int32)">
+            <summary>
+            Creates a qubit with given ID
+            </summary>
+            <param name="id">ID of the qubit</param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Qubit.GetQubits">
+            <summary>
+            Implementation of IQubitsContainer interface. This is an interface that 
+            is implemented by all types that contain qubits.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Qubit.Equals(Microsoft.Quantum.Simulation.Core.Qubit,Microsoft.Quantum.Simulation.Core.Qubit)">
+            <summary>
+            Check if two qubits have equal IDs
+            </summary>
+            <param name="q1">First qubit being compared</param>
+            <param name="q2">Second qubit being compared</param>
+            <returns>True if two qubits have equal ids</returns>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.Qubit.GetHashCode(Microsoft.Quantum.Simulation.Core.Qubit)">
+            <summary>
+            Qubits hash code based in Id
+            </summary>
+            <param name="q">Qubit for which hash should be computed</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Result">
+            <summary>
+            Represents the Result of a Measurement. Corresponds to Q# type <code>Result</code>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.Result.Zero">
+            <summary>
+            Corresponds to measuring +1 eigenstate of an observable or 
+            measuring |0⟩ in computational basis.
+            Represents Q# <code>Zero</code> constant.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.Result.One">
+            <summary>
+            Corresponds to measuring -1 eigenstate of an observable or 
+            measuring |1⟩ in computational basis.
+            Represents Q# <code>One</code> constant.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Pauli">
+            <summary>
+            Represents single-qubit Pauli operator.
+            Corresponds to Q# type <code>Pauli</code>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.Pauli.PauliI">
+            <summary>
+            Pauli Identity operator. Corresponds to Q# constant <code>PauliI</code>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.Pauli.PauliX">
+            <summary>
+            Pauli X operator. Corresponds to Q# constant <code>PauliX</code>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.Pauli.PauliY">
+            <summary>
+            Pauli Y operator. Corresponds to Q# constant <code>PauliY</code>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.Pauli.PauliZ">
+            <summary>
+            Pauli Z operator. Corresponds to Q# constant <code>PauliZ</code>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.ExecutionFailException">
+            <summary>
+            Exception thrown when the "fail" statement is reached in a Q# file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.ExecutionFailException.#ctor(System.String)">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.Quantum.Simulation.Core.ExecutionFailException"/>.
+            </summary>
+            <param name="message">String that is a part of  Q# fail statement</param>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.QVoid">
+            <summary>
+            Used by ICallable when Input or Output parameters are zero-arity tuples.
+            Corresponds to Q# type zero-arity tuple type <code>()</code>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.Core.QVoid.Instance">
+            <summary>
+            The instance of zero-arity tuple <code>()</code>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.IOperationFactory">
+            <summary>
+                An OperationFactory allows the creation at runtime
+                of Operation instances.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.Core.IOperationFactory.Name">
+            <summary>
+            Name of the operation factory. Usually this corresponds to the names of the 
+            simulator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.IOperationFactory.Get``2">
+            <summary>
+            Returns an instance of the requested operation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.IOperationFactory.Run``3(``1)">
+            <summary>
+                Executes an Operation. The execution maybe asynchronous, 
+                so it returns a Task.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.IOperationFactory.StartOperation(System.String,Microsoft.Quantum.Simulation.Core.OperationFunctor,System.Object)">
+            <summary>
+            Called by operation, before the start of every operation. Used to enable OnOperationStart
+            event in simulators.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Core.IOperationFactory.EndOperation(System.String,Microsoft.Quantum.Simulation.Core.OperationFunctor,System.Object)">
+            <summary>
+            Called by operation, at the end of every operation. Used to enable OnOperationEnd
+            event in simulators.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.IUnitary`1">
+            <summary>
+            Represents an operation that has both, a Controlled and Adjoint 
+            version.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Core.Unitary`1">
+            <summary>
+            Base class for Unitary operations.
+            </summary>
+        </member>
+    </members>
+</doc>
