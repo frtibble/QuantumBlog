@@ -1,0 +1,40 @@
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulator.Runtime.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Bell.exe
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Bell.pdb
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Canon.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.MetaData.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Primitives.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulation.Common.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulation.Core.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulation.Simulators.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\System.ValueTuple.dll
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulation.Common.xml
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulation.Core.xml
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.xml
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\Microsoft.Quantum.Simulation.Simulators.xml
+c:\users\frances\source\repos\Bell\Bell\bin\Debug\System.ValueTuple.xml
+c:\users\frances\source\repos\Bell\Bell\obj\Debug\Bell.csprojResolveAssemblyReference.cache
+c:\users\frances\source\repos\Bell\Bell\obj\Debug\Bell.csproj.CoreCompileInputs.cache
+c:\users\frances\source\repos\Bell\Bell\obj\Debug\Bell.exe
+c:\users\frances\source\repos\Bell\Bell\obj\Debug\Bell.pdb
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulator.Runtime.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Bell.exe
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Bell.pdb
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Canon.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.MetaData.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Primitives.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulation.Common.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulation.Core.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulation.Simulators.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\System.ValueTuple.dll
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulation.Common.xml
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulation.Core.xml
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.xml
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\Microsoft.Quantum.Simulation.Simulators.xml
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\bin\Debug\System.ValueTuple.xml
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\obj\Debug\Bell.csprojResolveAssemblyReference.cache
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\obj\Debug\Bell.csproj.CoreCompileInputs.cache
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\obj\Debug\Bell.exe
+C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\2 Bell - with X\Bell\obj\Debug\Bell.pdb

@@ -1,0 +1,4 @@
+:: files ::
+Operation.qs
+:: command ::
+"C:\Users\Frances\Documents\Projects\QuantumBlog\SourceCode\3 Bell - with H\packages\Microsoft.Quantum.Development.Kit.0.1.1712.901-preview\build\..\tools\qdocgen\docgen.exe" --input "Operation.qs" --doc-output obj\qsharp\docs\

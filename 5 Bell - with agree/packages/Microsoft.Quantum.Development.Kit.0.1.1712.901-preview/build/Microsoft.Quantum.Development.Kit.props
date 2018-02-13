@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <QscConfig Condition=" '$(QscConfig)' == '' ">$(Configuration)</QscConfig>
+    <QscConfig Condition=" '$(QscConfig)' == '' ">Debug</QscConfig>
+    <RunQsc Condition=" '$(RunQsc)' == '' ">True</RunQsc>
+    <RunQDocGen Condition=" '$(RunQDocGen)' == '' ">False</RunQDocGen>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <QSimDll Condition="'$(QSimDll)' == ''">$(MSBuildThisFileDirectory)..\runtimes\win10-x64\native\Microsoft.Quantum.Simulator.Runtime.dll</QSimDll>
+    <QscExe Condition="'$(QscExe)' == ''">$(MSBuildThisFileDirectory)..\tools\qsc\qsc.exe</QscExe>  
+    <QDocGen Condition="'$(QDocGen)' == ''">$(MSBuildThisFileDirectory)..\tools\qdocgen\docgen.exe</QDocGen>  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvailableItemName Include="QbCompile" />
+    <AvailableItemName Include="QsharpCompile" />
+    <AvailableItemName Include="QsharpIgnore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(QSimDll)">
+      <Link>Microsoft.Quantum.Simulator.Runtime.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </None>
+  </ItemGroup>
+</Project>

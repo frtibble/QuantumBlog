@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>docgen</name></assembly>
+<members>
+<member name="M:DocumentationGenerator.Generator.APIDocumentation.isPrivateName(System.String)">
+<summary>
+ Returns if the name of a code object follows the conventions for
+ private functions and operations, such that the code object should
+ be suppressed from output.
+</summary>
+</member>
+</members>
+</doc>
