@@ -1,4 +1,4 @@
-# QuantumBlog
+# London Quantum Computing Meetup
 
 - What is quantum computing? Why is it important? 
 - How do we build a quantum computer?
