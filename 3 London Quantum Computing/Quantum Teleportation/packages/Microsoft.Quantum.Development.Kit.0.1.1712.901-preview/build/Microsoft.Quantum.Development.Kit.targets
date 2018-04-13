@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="QsharpCompile" 
+      Inputs="@(QsharpFiles)"  
+      Outputs="$(QsharpOutDir)qsc-ok.txt"
+      DependsOnTargets="QsharpPrepare"
+      BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <QsReferences Include="@(ReferencePath)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch(%(FullPath), '(?i).netframework')) == false" />
+    </ItemGroup>
+    <PropertyGroup>
+      <QscCommand>&quot;$(QscExe)&quot; --input &quot;@(QsharpFiles,'&quot; &quot;')&quot; --references &quot;@(QsReferences,'&quot; &quot;')&quot; --outputpath $(QsharpSrcOutDir)</QscCommand>
+    </PropertyGroup>
+    <MakeDir Directories="$(QsharpSrcOutDir)" />
+    <WriteLinesToFile File="$(QsharpOutDir)qsc-command.txt" Lines=":: files ::;@(QsharpFiles);:: references ::;@(QsReferences);:: command ::;$(QscCommand)" Overwrite="true"/>
+    <Message Text="Skipping qsc as property RunQsc is '$(RunQsc)'" Condition="$(RunQsc) == false" />
+    <Exec Command="$(QscCommand)" Condition="$(RunQsc)" />
+    <WriteLinesToFile File="$(QsharpOutDir)qsc-ok.txt" Lines="qsc completed succesfully!" Overwrite="true"/>
+    <ItemGroup>
+      <Compile Include="$(QsharpSrcOutDir)**\*.g.cs">
+        <Visible>false</Visible>
+      </Compile>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="QsharpDocgen" 
+      Inputs="@(QsharpFiles)"  
+      Outputs="$(QsharpOutDir)qdocgen-ok.txt"
+      DependsOnTargets="QsharpPrepare"
+      AfterTargets="CoreCompile">
+    <PropertyGroup>
+      <QDocGenCommand>&quot;$(QDocGen)&quot; --input &quot;@(QsharpFiles,'&quot; &quot;')&quot; --doc-output $(QsharpDocsOutDir)</QDocGenCommand>
+    </PropertyGroup>
+    <MakeDir Directories="$(QsharpDocsOutDir)" />
+    <WriteLinesToFile File="$(QsharpOutDir)qdocgen-command.txt" Lines=":: files ::;@(QsharpFiles);:: command ::;$(QDocGenCommand)" Overwrite="true"/>
+    <Message Text="Skipping qdocgen as property RunQDocGen is '$(RunQDocGen)'" Condition="$(RunQDocGen) == false" />
+    <Exec Command="$(QDocGenCommand)" Condition="$(RunQDocGen)" IgnoreStandardErrorWarningFormat="true" />
+    <WriteLinesToFile File="$(QsharpOutDir)qdocgen-ok.txt" Lines="qdocgen completed succesfully!" Overwrite="true"/>
+  </Target>
+  
+  <Target Name="QsharpClean" DependsOnTargets="QsharpPrepare" BeforeTargets="Clean">
+    <ItemGroup>
+      <QsharpBuiltFiles Include="$(QsharpOutDir)**\*.*" />
+    </ItemGroup>
+    <Delete Files="@(QsharpBuiltFiles)" />
+  </Target>
+
+  <Target Name="QsharpPrepare" BeforeTargets="CoreCompile;QsharpClean">
+    <Message Text="QscConfig: $(QscConfig); Configuration: $(Configuration); BuildConfiguration: $(BuildConfiguration)" />    
+    <Message Text="BuildMajor: $(BuildMajor); BuildMinor:$(BuildMinor); BuildRevision: $(BuildRevision)" />
+    <ItemGroup>
+      <QsharpFiles Include="@(QbCompile);@(QsharpCompile)">
+        <Visible>false</Visible>
+      </QsharpFiles>
+      <SkippedQsharpFiles Include="**\*.qs" Exclude="@(QsharpFiles);@(QsharpIgnore)">
+        <Visible>false</Visible>
+      </SkippedQsharpFiles>
+    </ItemGroup>
+    <PropertyGroup>
+      <QsharpOutDir Condition="'$(QsharpOutDir)' == ''">$(BaseIntermediateOutputPath)qsharp</QsharpOutDir>
+      <QsharpOutDir Condition="!HasTrailingSlash('$(QsharpOutDir)')">$(QsharpOutDir)\</QsharpOutDir>
+      <QsharpSrcOutDir>$(QsharpOutDir)src\</QsharpSrcOutDir>
+      <QsharpDocsOutDir>$(QsharpOutDir)docs\</QsharpDocsOutDir>
+    </PropertyGroup>
+    <Warning
+        Condition="'@(SkippedQbFiles)' != ''"
+        Text="Some .qs files in your project will be skipped during build: @(SkippedQsharpFiles)" />
+  </Target>
+</Project>

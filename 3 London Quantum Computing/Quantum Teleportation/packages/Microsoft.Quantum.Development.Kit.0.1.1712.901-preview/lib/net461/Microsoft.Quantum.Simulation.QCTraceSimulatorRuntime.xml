@@ -1,0 +1,672 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime</name>
+    </assembly>
+    <members>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.CallGraphEdge.callGraphRoot">
+            <summary>
+            Name of the root element of the call graph. OperationCallerName
+            must be equal to this value for all top-level operations.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsCheckerConfiguration">
+            <summary>
+            Used by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsCheckerConfiguration.throwOnNonDistinctQubits">
+            <summary>
+            If set to true, <see cref="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.DistinctInputsCheckerException"/> will thrown every time non-distinct input qubits are detected.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsCheckerConfiguration.operationsToIgnore">
+            <summary>
+            Operations for which distinct inputs check should not be performed.
+            There are potentially cases when one might need to disable this check, but we expect them to be extremely rare.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsCheckerResults">
+            <summary>
+            Used by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsCheckerResults.nonDistinctInputsEventTotalCount">
+            <summary>
+            Number of times non-distinct inputs to the operation were detected
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker">
+            <summary>
+            <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/> listener that checks that qubits passed to operations are distinct.
+            TODO: reference the section of the spec discussing the ramifications of passing non-distinct qubits to operations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.DistinctQubitsCheck(System.Object[])">
+            <summary>
+            Check if the id's of qubits contained in qubitsTraceData are all distinct. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.NewTracingData(System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.OnAllocate(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.OnBorrow(System.Object[],System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.OnOperationEnd(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.OnOperationStart(System.String,System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.OnPrimitiveOperation(System.Int32,System.Object[],System.Double)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.OnRelease(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker.OnReturn(System.Object[],System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.globalCounters">
+            <summary>
+            Number of primitive operations performed since the beginning of the execution.
+            Double type is used because all the collected statistics are of type double.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.#ctor(Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounterConfiguration,Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic[])">
+            <param name="statisticsToCollect">
+            Statistics to be collected. If set to null, the
+            statistics returned by <see cref="!:StatisticsCollector.DefaultStatistics"/>
+            are used. </param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.OnAllocate(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.OnRelease(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.OnBorrow(System.Object[],System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.OnReturn(System.Object[],System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.OnPrimitiveOperation(System.Int32,System.Object[],System.Double)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.OnOperationStart(System.String,System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.OnOperationEnd(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.PrimitiveOperationsCounter.NewTracingData(System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.ICSVColumns">
+            <summary>
+            Indicates that a type can be serialized as columns of a CSV file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.ICSVColumns.Count">
+            <summary>
+            Number of columns
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.ICSVColumns.GetColumnNames">
+            <summary>
+            Column names.  Must be of length <see cref="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.ICSVColumns.Count"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.ICSVColumns.GetRow">
+            <summary>
+            Row corresponding to given type values. Must be of length <see cref="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.ICSVColumns.Count"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic">
+            <summary>
+            Interface used to collect statistics ( usually in a streaming fashion ).
+            See <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MomentsStatistic"/> and <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MinMaxStatistic"/> for the examples of the implementation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic.StatisticsCount">
+            <summary>
+            Number of statistics being collected by given class
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic.GetStatisticsNames">
+            <summary>
+            Returns the names of the collected statistics. The length of the array is <see cref="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic.StatisticsCount"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic.GetStatistics">
+            <summary>
+            Values of the observed statistics. The length of the array is <see cref="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic.StatisticsCount"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic.GetNewInstance">
+            <summary>
+            New instance of the class implementing the interface that contains zero samples. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Extensions">
+            <summary>
+            Extensions related to <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Extensions.GetStatisticsNames(System.Collections.Generic.IEnumerable{Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic})">
+            <summary>
+            Concatenates statistics names
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Extensions.GetStatistics(System.Collections.Generic.IEnumerable{Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IDoubleStatistic})">
+            <summary>
+            Concatenates statistics values
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseCheckerConfiguration">
+            <summary>
+            Used by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker"/>. 
+            See the <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker"/> for the definition of invalidated qubit.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseCheckerConfiguration.throwOnInvalidatedQubitUse">
+            <summary>
+            If set to true, the <see cref="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.InvalidatedQubitsUseCheckerException"/> is thrown.
+            Otherwise total number of non-distict qubit inputs is collected.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseCheckerResults">
+            <summary>
+            Used by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker"/>. 
+            See the <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker"/> for the definition of invalidated qubit.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseCheckerResults.invalidatedQubitsUseCount">
+            <summary>
+            Number of efforts to use invalidated qubits that has been detected.
+            See the <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker"/> for the definition of invalidated qubit.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker">
+            <summary>
+            Checks if the qubits input to the operation has been invalidated.
+            Qubits are invalidated when they are returned or released. 
+            Qubits are released in the end of using block and returned in the end of borrowing block.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker.NewTracingData(System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker.OnAllocate(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker.OnBorrow(System.Object[],System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker.OnOperationEnd(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker.OnOperationStart(System.String,System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker.OnPrimitiveOperation(System.Int32,System.Object[],System.Double)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker.OnRelease(System.Object[])">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.InvalidatedQubitsUseChecker.OnReturn(System.Object[],System.Int64)">
+            <summary>
+            Part of implementation of <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener"/> interface. See the interface documentation for more details.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MomentsStatistic.count">
+            <summary>
+            Number of samples collected
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MultivariableRecord">
+            <summary>
+            Collects statistics for multiple random variables. Used by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener">
+            <summary>
+            The interface used to receive notifications about events from <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/>.
+            See <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DistinctInputsChecker"/> for a simple example of the class implementing this interface. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.OnAllocate(System.Object[])">
+            <summary>
+            Called every time qubits are allocated by the <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/>
+            </summary>
+            <param name="qubitsTraceData"> Data attached to allocated qubits. Each instance of the attached data is created by the call to <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.NewTracingData(System.Int64)"/></param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.OnRelease(System.Object[])">
+            <summary>
+            Called every time qubits are released by the <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/>
+            </summary>
+            <param name="qubitsTraceData"> Data attached to released qubits. Each instance of the attached data is created by the call to <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.NewTracingData(System.Int64)"/></param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.OnBorrow(System.Object[],System.Int64)">
+            <summary>
+            Called every time qubits are borrowed by the <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/>
+            </summary>
+            <param name="qubitsTraceData"> Data attached to borrowed qubits. Each instance of the attached data is created by the call to <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.NewTracingData(System.Int64)"/></param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.OnReturn(System.Object[],System.Int64)">
+            <summary>
+            Called every time qubits are returned by the <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/>
+            </summary>
+            <param name="qubitsTraceData"> Data attached to returned qubits. Each instance of the attached data is created by the call to <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.NewTracingData(System.Int64)"/></param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.OnPrimitiveOperation(System.Int32,System.Object[],System.Double)">
+            <summary>
+            Called every time primitive operation is executed by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/>
+            </summary>
+            <param name="qubitsTraceData"> Data attached to qubits passed to the operation. Each instance of the attached data is created by the call to <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.NewTracingData(System.Int64)"/></param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.OnOperationStart(System.String,System.Object[])">
+            <summary>
+            Called before an operation is going to be executed by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/>
+            </summary>
+            <param name="name">Name of the operation that is going to be executed</param>
+            <param name="qubitsTraceData"> Data attached to qubits passed to the operation. Each instance of the attached data is created by the call to <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.NewTracingData(System.Int64)"/></param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.OnOperationEnd(System.Object[])">
+            <summary>
+            Called after an operation was executed by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore"/>
+            </summary>
+            <param name="qubitsTraceData"> Data attached to the returned qubits. Each instance of the attached data is created by the call to <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.NewTracingData(System.Int64)"/></param>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IQCTraceSimulatorListener.NewTracingData(System.Int64)">
+            <summary>
+            Returns an object containing data that the listener would like to attach to the given qubit.
+            </summary>
+            <param name="qubitId">Id of the qubit to which the data is going to be attached to.</param>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MeasurementConstraint.ConstraintType.Assert">
+            <summary>
+            Indicates that constraint corresponds to the assertion that given 
+            measurement outcome should happen with given probability. Assertion 
+            is the fact that the user knows about the computation they are writing.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MeasurementConstraint.ConstraintType.Force">
+            <summary>
+            Indicated that constraint corresponds to the user wanting to enforce 
+            the measurement outcome for debugging purposes. User does not know that 
+            this particular outcome will happen, but they want to observe execution path
+            when this outcome happens.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MeasurementConstraint.Observable">
+            <summary>
+            The observable being measured
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MeasurementConstraint.ConstraintResult">
+            <summary>
+            The measurement outcome that should be forces or 
+            should happen with given probability
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MeasurementConstraint.Probability">
+            <summary>
+            Probability with which asserted outcome should happen.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MeasurementConstraint.ZeroStateAssert">
+            <summary>
+            Returns measurement constraint object corresponding to 
+            a given qubit being in zero state
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MeasurementConstraint.ForceMeasurement(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Pauli},Microsoft.Quantum.Simulation.Core.Result)">
+            <summary>
+            Returns measurement constraint corresponding to the user enforcing given outcome. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.MeasurementConstraint.AssertMeasurement(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Pauli},Microsoft.Quantum.Simulation.Core.Result,System.Double)">
+            <summary>
+            Returns measurement constraint corresponding to user asserting that given measurement should 
+            happen with given probability.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QubitConstraint">
+            <summary>
+            Holds data describing measurement constraint associated to a 
+            given qubit at a given execution moment. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QubitConstraint.OnUseQubit">
+            <summary>
+            If qubit was used, in other words some unitary or measurement were applied to it, 
+            the constraint gets invalidated.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QubitConstraint.OnRelease">
+            <summary>
+            Released qubits assumed to be in a zero state
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QubitConstraint.QubitPauli">
+            <summary>
+            Pauli in the constraint assigned to this qubit
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QubitTimeMetrics">
+            <summary>
+            Used by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.DepthCounter"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QubitTimeMetrics.AvailableAt">
+            <summary>
+            Time when the qubit becomes available
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QubitTimeMetrics.RecordQubitUsage(System.Double,System.Double)">
+            <param name="timeAt">Beginning of the execution of the primitive operation on the qubit</param>
+            <param name="duration">Duration of the primitive operation</param>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1">
+            <summary>
+            Intended for reading collected statistics
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.GetStatistic(`0,System.String,System.String)">
+            <summary>
+            Gets a statistics for a given key, variable name and statistic name. The array of possible names is returned by 
+            <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.GetVariablesNamesCopy"/>. The array of possible names is
+            returned by <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.GetStatisticsNamesCopy"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.GetStatistics(`0,System.String)">
+            <summary>
+            Gets array of statistics for a given key and variable name. The list of possible names is returned by 
+            <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.GetVariablesNamesCopy"/>. Names of statistics corresponding to each array element are 
+            returned by <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.GetStatisticsNamesCopy"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.GetStatisticsNamesCopy">
+            <summary>
+            Returns names of the statistics being collected.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.GetVariablesNamesCopy">
+            <summary>
+            Returns names of the variable names for which statistics are collected.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.IStatisticCollectorResults`1.ToCSV(System.String)">
+            <summary>
+            Creates string with all the statistics results in CSV format. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.DefaultStatistics">
+            <summary>
+            Statistic that are going to be collected by default if they were not specified explicitly.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.GetStatistics(`0,System.String)">
+            <summary>
+            Gets array of statistics for a given key and variable name. The list of possible names is returned by 
+            <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.GetVariablesNamesCopy"/>. Names of statistics corresponding to each array element are 
+            returned by <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.GetStatisticsNamesCopy"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.GetStatistic(`0,System.String,System.String)">
+            <summary>
+            Gets a statistics for a given key, variable name and statistic name. The array of possible names is returned by 
+            <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.GetVariablesNamesCopy"/>. The array of possible names is
+            returned by <see cref="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.GetStatisticsNamesCopy"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.GetStatisticsNamesCopy">
+            <summary>
+            Returns names of the statistics being collected.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.GetVariablesNamesCopy">
+            <summary>
+            Returns names of the variable names for which statistics are collected.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.StatisticsCollector`1.ToCSV(System.String)">
+            <summary>
+            Creates string with all the statistics results in CSV format. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.TraceableQubit">
+            <summary>
+            TraceableQubit holds data associated with a qubit 
+            for runtime checks, metrics collection and measurement constraints tracking.
+            Used by <see cref="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.TraceableQubitManager"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.TraceableQubit.traceData">
+            <summary>
+            Objects attached to the qubit
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.TraceableQubit.#ctor(System.Int32,System.Int32)">
+            <param name="traceDataSize">Number of objects that can be attached to each qubit</param>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.TraceableQubitManager">
+            <summary>
+            Qubit manager for TraceableQubit type. Ensures that all the traceable 
+            qubits are configured as requested during qubit manage construction.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.TraceableQubitManager.#ctor(System.Func{System.Int64,System.Object}[])">
+            <summary>
+            The qubit manager makes sure that trace data array for qubits 
+            is initialized with objects created by qubitTraceDataInitializers callbacks
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCoreConfiguration.ThrowOnUnconstraintMeasurement">
+            <summary>
+            If set to true,  TracingSimulatorCore will throw an exception every time there is a 
+            measurement that has not been annotated via AssertProb or DebugForceMeasure. 
+            This is mainly useful in combination with interactive debugging. This way it is easier 
+            to identify all the measurements that has not been annotated and fix them. 
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore" -->
+        <member name="F:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.randomGenerator">
+            <summary>
+            Random number generator used to sample measurement outcomes according to the 
+            probability distribution specified by user. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.NumberOfUnconstrainedMeasurements">
+            <summary>
+            Number of unconstrained measurements that happened during execution. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.Measure(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Pauli},Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Implements Qb standard library function Measure. 
+            Not all measurements considered primitive operations. The measurements 
+            that are primitive operations are listed in 
+            MetricsCalculatorConfiguration.MeasurementToPrimitiveOperation
+            If the measurement is not primitive, the operation will throw 
+            NonPrimitiveMeasurementException. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.Assert(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Pauli},Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit},Microsoft.Quantum.Simulation.Core.Result)">
+            <summary>
+            Implements Qb standard library assert 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.AssertProb(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Pauli},Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit},Microsoft.Quantum.Simulation.Core.Result,System.Double)">
+            <summary>
+            Implements Qb standard library assertProb
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.ForceMeasure(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Pauli},Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit},Microsoft.Quantum.Simulation.Core.Result)">
+            <summary>
+            Ensures that measurement of given observable on given qubits will 
+            lead to result given by value
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.InvalidateConstraints(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Notifies qubits involved in Primitive operation that they have been modified. 
+            Performs calls runtime checker for distinct qubits input check. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.DoPrimitiveOperation(System.Int32,Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit},System.Double,System.Boolean)">
+            <summary>
+            Callback for primitive operations 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.OnOperationStart(System.String,Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Callback to notify tracer that an operation execution has started. 
+            Passes callBack down to metricsCalculator and runtimeChecker. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.QCTraceSimulatorCore.OnOperationEnd(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Callback to notify tracer that an operation execution has ended. 
+            Passes callBack down to metricsCalculator and runtimeChecker. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Utils.PruneObservable(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Pauli},Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit},Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Pauli}@,Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit}@)">
+            <summary>
+            Removes PauliI terms from observable and corresponding qubits from qubits. 
+            Returns the observable description that is equivalent to the original one, but has no PauliI terms
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Utils.Opposite(Microsoft.Quantum.Simulation.Core.Result)">
+            <summary>
+            Returns the measurement result that is the opposite to a given one
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Utils.DeepClone``1(``0)">
+            <summary>
+            Makes a deep copy of a serializable type. Based on CLR via C#, 4th ed., by J.Richter, page 615 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Utils.ExtractTracingData``1(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit},System.Int32)">
+            <summary>
+            Extracts tracing data from array of qubit with index data_id
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Utils.ExtractTracingData``1(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Extracts tracing data from array of qubit. Goes through all types attached to the qubits and tries to find 
+            a record of type <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.Utils.ExtractTracingDataBulk(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit},System.Int32,System.Int32)">
+            <summary>
+            Extracts arrays of data attached to array of qubits and performs the transpose.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.QCTraceSimulatorRuntime.WidthCounter">
+            <summary>
+            Collects statistics about number of qubits used
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.DistinctInputsCheckerException">
+            <summary>
+            This exception is thrown when the input to an 
+            operation contains multiple qubits with the same ID.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.DistinctInputsCheckerException.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.DistinctInputsCheckerException"/>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.InvalidatedQubitsUseCheckerException">
+            <summary>
+            This exception is thrown when a qubit input to the operation has already been released or returned. 
+            Qubits are released at the end of a Q# <c>using</c> statement
+            and returned at the end of a Q# <c>borrowing</c> statement.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.InvalidatedQubitsUseCheckerException.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.InvalidatedQubitsUseCheckerException"/>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.QubitTimeMetricsException">
+            <summary>
+            This exception is thrown when inconsistencies in the recording of qubit metrics are detected.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.QubitTimeMetricsException.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.QubitTimeMetricsException"/>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.UnconstrainedMeasurementException">
+            <summary>
+            This exception is thrown when a measurement is performed, but has not been annotated using
+            a call to either <c>Microsoft.Quantum.Primitive.AssertProb</c> or
+            <c>Microsoft.Quantum.Primitive.Assert</c>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.UnconstrainedMeasurementException.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.Quantum.Simulation.Simulators.QCTraceSimulators.UnconstrainedMeasurementException"/>
+            </summary>
+        </member>
+    </members>
+</doc>

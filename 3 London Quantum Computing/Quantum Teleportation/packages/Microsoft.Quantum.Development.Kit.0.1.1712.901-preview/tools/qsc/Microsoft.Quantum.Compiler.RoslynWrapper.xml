@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Microsoft.Quantum.Compiler.RoslynWrapper</name></assembly>
+<members>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.Invocation">
+ <summary>
+ Use this module to specify the syntax for a <code>method invocations</code>
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.GenericName">
+ <summary>
+ Use this module to specify the syntax for a <code>generic type</code> name
+ </summary>
+</member>
+<member name="M:Microsoft.Quantum.Compiler.RoslynWrapper.Expressions.op_BarTwiddleGreater(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.String)">
+<summary>
+ alias for the ``as`` function
+</summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.IfStatement">
+ <summary>
+ Generate if statements
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.ForeachStatement">
+ <summary>
+ Generate foreach statements
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.WhileStatement">
+ <summary>
+ Generate while statements
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.TryStatement">
+ <summary>
+ Generate while statements
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.ObjectCreation">
+ <summary>
+ Use this module to specify the syntax for a <code>object instantiation</code>
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.Conversion">
+ <summary>
+ Use this module to specify the syntax for <code>explicit</code> and <code>implicit</code> conversion operators
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.FieldDeclaration">
+ <summary>
+ Use this module to specify the syntax for a <code>field</code>
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.LocalDeclaration">
+<summary>
+ Use this module to specify the syntax for a local variable
+</summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.PropertyDeclaration">
+ <summary>
+ Use this module to specify the syntax for a <code>class or interface property</code>
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.MethodDeclaration">
+ <summary>
+ Use this module to specify the syntax for a <code>class or interface method</code>
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.ConstructorDeclaration">
+ <summary>
+ Use this module to specify the syntax for a <code>class constructor</code>
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.InterfaceDeclaration">
+ <summary>
+ Use this module to specify the syntax for an <code>interface</code>
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.ClassDeclaration">
+ <summary>
+ Use this module to specify the syntax for a <code>class</code>
+ </summary>
+</member>
+<member name="M:Microsoft.Quantum.Compiler.RoslynWrapper.NamespaceDeclaration.namespace``2(System.String,``0,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.CSharp.Syntax.UsingDirectiveSyntax},System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.CSharp.Syntax.MemberDeclarationSyntax},``1)">
+<summary>
+ This function creates a &apos;namespace&apos; with the given name and contents:
+
+ ##### Parameters
+ 1. **namespaceName** : `string` : The name of the namespace to be created
+ 1. ``{`` : white noise : ignored - use the ``{`` constant for visual structure
+ 1. **usings** : `string seq` : The namespaces to reference within this namespace
+ 1. **members** : `MemberDeclaration seq` : the members of this namespace. Typically `class` and `interface`
+ 1. ``}`` : white noise : ignored - use the ``}`` constant for visual structure
+
+ ##### Returns
+ A `namespace` object
+
+ ##### Usage
+  ```
+      ``namespace`` &quot;Foo&quot;
+          ``{``
+              [ ``using`` &quot;System&quot; ]
+              [ c ]
+          ``}``
+  ```
+  will result in a namespace definition which will generate code similar to
+  ```
+      namespace Foo
+      {
+          using System;
+
+          class C {...}
+      }
+  ```
+
+ ##### Notes
+ * The `System` namespace is always included by default
+ * You may pass a sequence of these namespaces to ``compilation unit`` and generate code from it
+
+</summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.NamespaceDeclaration">
+ <summary>
+ Use this module to specify the syntax for a <code>namespace</code>
+ </summary>
+</member>
+<member name="M:Microsoft.Quantum.Compiler.RoslynWrapper.CompilationUnit.compilation unit(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.CSharp.Syntax.AttributeListSyntax},System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.CSharp.Syntax.UsingDirectiveSyntax},System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.CSharp.Syntax.MemberDeclarationSyntax})">
+<summary>
+ This function creates a &apos;compilation unit&apos; given a sequence of members.
+</summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.CompilationUnit">
+ <summary>
+ Use this module to specify the syntax for a <code>compilation unit</code>
+ </summary>
+</member>
+<member name="T:Microsoft.Quantum.Compiler.RoslynWrapper.CodeGenerator">
+ <summary>
+ This is the entry point to the Roslyn Wrapper.
+ Pass a <see cref="CompilationUnitSyntax" /> to <see cref="generateCodeToString"/> to get string with the generated code.
+ </summary>
+</member>
+</members>
+</doc>

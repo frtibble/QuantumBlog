@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Quantum.Simulation.Common</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.Quantum.Simulation.Common.IQubitManager.OnOperationStart(System.String,Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Callback to notify QubitManager that an operation execution has started. 
+            This helps manage qubits scope.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.IQubitManager.OnOperationEnd(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Callback to notify QubitManager that an operation execution has ended. 
+            This helps manage qubits scope.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Quantum.Simulation.Common.QubitManager">
+            <summary>
+            Manages Allocation, release, borrowing and return of qubits.
+            Reuse of qubit Ids is allowed if they have been released.
+            Allocation and release are O(1) operations.
+            QubitManager uses memory - sizeof(long)*qubitCapacity. qubitCapacity is passed in to the constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.#ctor(System.Int64,System.Boolean,System.Boolean)">
+            <summary>
+            Creates and initializes QubitManager that can handle up to numQubits qubits
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.AllocateOneQubit(System.Boolean)">
+            <summary>
+            Allocates a qubit.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.Allocate">
+            <summary>
+            Allocates a qubit.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.Allocate(System.Int64)">
+            <summary>
+            Allocates numToAllocate new qubits.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.Release(Microsoft.Quantum.Simulation.Core.Qubit)">
+            <summary>
+            Releases a given qubit.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.Release(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Releases a set of given qubits.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.Borrow(System.Int64,System.Collections.Generic.IEnumerable{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Borrows a number of qubits. Chooses them for among already allocated ones.
+            Makes sure borrowed qubits are not on the exclusion list.
+            Exclusion list is supposed to contain qubits that can not be borrowed, 
+            for example those, that are being used (or could be used) in the current context.
+            If there are not enough qubits to borrow, allocates new ones.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.Return(Microsoft.Quantum.Simulation.Core.Qubit)">
+            <summary>
+            Returns a given borrowed qubit.
+            Releases it if it has been allocated just for borrowing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.Return(Microsoft.Quantum.Simulation.Core.QArray{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+            Returns a set of borrowed qubits given.
+            Releases those that have been allocated just for borrowing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Quantum.Simulation.Common.QubitManager.BorrowUnsorted(System.Int64,System.Collections.Generic.IEnumerable{Microsoft.Quantum.Simulation.Core.Qubit})">
+            <summary>
+             Same as Borrow, but allowes array of exluded qubits to be unsorted. It is recommended to use Borrow instead.
+            </summary>
+            <param name="numToBorrow"></param>
+            <param name="excludedQubits"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
