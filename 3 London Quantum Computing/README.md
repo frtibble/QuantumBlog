@@ -1,5 +1,4 @@
 # QuantumBlog
-On 11th April 2018 I presented at the London Quantum Computing Meetup, along with my colleague Anita Ramanan. You can find details of the meetup [here](https://www.meetup.com/London-Quantum-Computing-Meetup/events/248537537/). We looked to answer these questions: 
 
 - What is quantum computing? Why is it important? 
 - How do we build a quantum computer?
@@ -7,20 +6,20 @@ On 11th April 2018 I presented at the London Quantum Computing Meetup, along wit
 - What is Q#/the QDK and why would you use it?
 - Can we use Q# to teleport a quantum state?
 
-My part of the talk was based on [my blog post](https://blogs.msdn.microsoft.com/uk_faculty_connection/2018/02/27/quantum-teleportation-in-q/) on quantum teleportation.
+These are some of the question Anita and I tried to answer when we presented at the [London Quantum Computing Meetup](https://www.meetup.com/London-Quantum-Computing-Meetup/events/248537537/) on 11th April 2018. Anita gave us an introduction to quantum computing, and why we might want a quantum computer, and I followed with how we could achieve some of these things in code using Q#. The majority of my section was based on [my blog post](https://blogs.msdn.microsoft.com/uk_faculty_connection/2018/02/27/quantum-teleportation-in-q/) on quantum teleportation.
 
 ## Slides
-You can find the slides that explain quantum gates and teleportation [here](https://github.com/frtibble/QuantumBlog/blob/master/3%20London%20Quantum%20Computing/LondonQuantumComputing.pdf). I suggest you read [my blog post](https://blogs.msdn.microsoft.com/uk_faculty_connection/2018/02/27/quantum-teleportation-in-q/) for any of the written explanation.
+You can find the slides for quantum gates and quantum teleportation [here](https://github.com/frtibble/QuantumBlog/blob/master/3%20London%20Quantum%20Computing/LondonQuantumComputing.pdf).
 
 ## Quantum Teleportation Code
-During the talk I did a demo of quantum teleportation in Q#. That is based on the [Microsoft Quantum GitHub repo](https://github.com/Microsoft/Quantum/tree/master/Samples/Teleportation). I have also added an additional operation which shows an example of teleporting a more complex quantum state than the classical one we saw in the demo - you can find that code [here](https://github.com/frtibble/QuantumBlog/tree/master/3%20London%20Quantum%20Computing/Quantum%20Teleportation).
+During the talk I did a demo of quantum teleportation in Q# which was based on the [Microsoft Quantum GitHub repo](https://github.com/Microsoft/Quantum/tree/master/Samples/Teleportation). During the Q&A we had a request for a more complex quantum state, so I've added an example [here](https://github.com/frtibble/QuantumBlog/tree/master/3%20London%20Quantum%20Computing/Quantum%20Teleportation).
 
 ## Blog
 *Coming soon*
 
 ## Links
-[Quantum Twitter](aka.ms/QuantumTwitter)
-[Quantum Newsletter](aka.ms/QuantumNewsletter)
-[Quantum blogs by Anita and myself](aka.ms/QuantumAdventures)
-[Anita's twitter](https://twitter.com/whywontitbuild)
-[My twitter](https://twitter.com/frances_tibble)
+- [Quantum Twitter](aka.ms/QuantumTwitter)
+- [Quantum Newsletter](aka.ms/QuantumNewsletter)
+- [Quantum blogs by Anita and myself](aka.ms/QuantumAdventures)
+- [Anita's twitter](https://twitter.com/whywontitbuild)
+- [My twitter](https://twitter.com/frances_tibble)
