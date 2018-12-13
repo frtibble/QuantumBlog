@@ -1,4 +1,0 @@
-:: files ::
-Operation.qs
-:: command ::
-"C:\Users\Frances\Documents\Projects\QuantumBlog\QuantumBlog\2 Quantum Teleportation\packages\Microsoft.Quantum.Development.Kit.0.1.1712.901-preview\build\..\tools\qdocgen\docgen.exe" --input "Operation.qs" --doc-output obj\qsharp\docs\
